@@ -6,6 +6,7 @@ import {
   FaArrowDown,
   FaImage,
 } from "react-icons/fa";
+import { stopPropagation } from "./utils";
 
 const TestimonialsEditor = ({ section, onUpdate }) => {
   const { title, testimonials = [] } = section.properties;
@@ -67,6 +68,7 @@ const TestimonialsEditor = ({ section, onUpdate }) => {
             type="text"
             value={title || ""}
             onChange={(e) => onUpdate({ title: e.target.value })}
+            onClick={stopPropagation}
             className="w-full p-2 border rounded focus:ring-blue-500 focus:border-blue-500"
           />
         </div>
@@ -166,6 +168,7 @@ const TestimonialsEditor = ({ section, onUpdate }) => {
                             e.target.value
                           )
                         }
+                        onClick={stopPropagation}
                         className="w-full p-2 text-sm border rounded"
                         rows="3"
                       />
@@ -186,6 +189,7 @@ const TestimonialsEditor = ({ section, onUpdate }) => {
                               e.target.value
                             )
                           }
+                          onClick={stopPropagation}
                           className="w-full p-2 text-sm border rounded"
                         />
                       </div>
@@ -204,6 +208,7 @@ const TestimonialsEditor = ({ section, onUpdate }) => {
                               e.target.value
                             )
                           }
+                          onClick={stopPropagation}
                           className="w-full p-2 text-sm border rounded"
                         />
                       </div>
@@ -224,6 +229,7 @@ const TestimonialsEditor = ({ section, onUpdate }) => {
                               e.target.value
                             )
                           }
+                          onClick={stopPropagation}
                           className="flex-1 p-2 text-sm border rounded-l"
                         />
                         <button

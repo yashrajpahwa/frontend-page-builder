@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FaPlus, FaTrash, FaArrowUp, FaArrowDown } from "react-icons/fa";
 import * as FaIcons from "react-icons/fa";
+import { stopPropagation } from "./utils";
 
 const CardGridEditor = ({ section, onUpdate }) => {
   const { title, cards = [], columns = 3 } = section.properties;
@@ -75,6 +76,7 @@ const CardGridEditor = ({ section, onUpdate }) => {
             type="text"
             value={title || ""}
             onChange={(e) => onUpdate({ title: e.target.value })}
+            onClick={stopPropagation}
             className="w-full p-2 border rounded focus:ring-blue-500 focus:border-blue-500"
           />
         </div>
@@ -86,6 +88,7 @@ const CardGridEditor = ({ section, onUpdate }) => {
           <select
             value={columns}
             onChange={(e) => onUpdate({ columns: parseInt(e.target.value) })}
+            onClick={stopPropagation}
             className="w-full p-2 border rounded focus:ring-blue-500 focus:border-blue-500"
           >
             <option value={1}>1 Column</option>
@@ -100,7 +103,10 @@ const CardGridEditor = ({ section, onUpdate }) => {
           <div className="flex justify-between items-center mb-2">
             <h3 className="font-medium text-lg">Cards</h3>
             <button
-              onClick={addCard}
+              onClick={(e) => {
+                e.stopPropagation();
+                addCard();
+              }}
               className="flex items-center px-3 py-1 bg-green-500 text-white rounded hover:bg-green-600"
             >
               <FaPlus className="mr-1" /> Add Card
@@ -178,6 +184,7 @@ const CardGridEditor = ({ section, onUpdate }) => {
                         onChange={(e) =>
                           handleCardChange(index, "title", e.target.value)
                         }
+                        onClick={stopPropagation}
                         className="w-full p-2 text-sm border rounded"
                       />
                     </div>
@@ -191,6 +198,7 @@ const CardGridEditor = ({ section, onUpdate }) => {
                         onChange={(e) =>
                           handleCardChange(index, "description", e.target.value)
                         }
+                        onClick={stopPropagation}
                         className="w-full p-2 text-sm border rounded"
                         rows="2"
                       />
@@ -207,12 +215,16 @@ const CardGridEditor = ({ section, onUpdate }) => {
                           onChange={(e) =>
                             handleCardChange(index, "icon", e.target.value)
                           }
+                          onClick={stopPropagation}
                           className="flex-1 p-2 text-sm border rounded-l"
                           placeholder="FaIcon name (e.g. FaStar)"
                         />
                         <button
                           className="bg-gray-200 p-2 rounded-r border-t border-r border-b"
-                          onClick={() => openIconPicker(index)}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            openIconPicker(index);
+                          }}
                         >
                           Choose
                         </button>
@@ -235,8 +247,17 @@ const CardGridEditor = ({ section, onUpdate }) => {
 
         {/* Icon Picker Modal */}
         {showIconPicker && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-            <div className="bg-white rounded-lg p-6 w-3/4 max-h-[80vh] overflow-y-auto">
+          <div
+            className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+            onClick={(e) => {
+              e.stopPropagation();
+              setShowIconPicker(false);
+            }}
+          >
+            <div
+              className="bg-white rounded-lg p-6 w-3/4 max-h-[80vh] overflow-y-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
               <h2 className="text-xl font-bold mb-4">Select an Icon</h2>
               <div className="grid grid-cols-8 gap-2">
                 {faIcons.map((iconName) => {
@@ -245,7 +266,10 @@ const CardGridEditor = ({ section, onUpdate }) => {
                     <button
                       key={iconName}
                       className="p-3 border rounded hover:bg-blue-100 flex items-center justify-center"
-                      onClick={() => selectIcon(iconName)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        selectIcon(iconName);
+                      }}
                     >
                       <Icon className="text-xl" />
                     </button>
@@ -255,7 +279,10 @@ const CardGridEditor = ({ section, onUpdate }) => {
               <div className="mt-6 flex justify-end">
                 <button
                   className="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400"
-                  onClick={() => setShowIconPicker(false)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setShowIconPicker(false);
+                  }}
                 >
                   Cancel
                 </button>

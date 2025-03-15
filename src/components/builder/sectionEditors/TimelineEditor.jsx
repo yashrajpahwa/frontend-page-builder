@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FaPlus, FaTrash, FaArrowUp, FaArrowDown } from "react-icons/fa";
+import { stopPropagation } from "./utils";
 
 const TimelineEditor = ({ section, onUpdate }) => {
   const {
@@ -90,6 +91,7 @@ const TimelineEditor = ({ section, onUpdate }) => {
             type="text"
             value={title || ""}
             onChange={(e) => onUpdate({ title: e.target.value })}
+            onClick={stopPropagation}
             className="w-full p-2 border rounded focus:ring-blue-500 focus:border-blue-500"
           />
         </div>
@@ -101,6 +103,7 @@ const TimelineEditor = ({ section, onUpdate }) => {
           <textarea
             value={description || ""}
             onChange={(e) => onUpdate({ description: e.target.value })}
+            onClick={stopPropagation}
             className="w-full p-2 border rounded focus:ring-blue-500 focus:border-blue-500"
             rows="2"
           />
@@ -112,6 +115,7 @@ const TimelineEditor = ({ section, onUpdate }) => {
               type="checkbox"
               checked={showLinks}
               onChange={(e) => onUpdate({ showLinks: e.target.checked })}
+              onClick={stopPropagation}
               className="mr-2"
             />
             Show Links
@@ -201,6 +205,7 @@ const TimelineEditor = ({ section, onUpdate }) => {
                           onChange={(e) =>
                             handleEventChange(index, "title", e.target.value)
                           }
+                          onClick={stopPropagation}
                           className="w-full p-2 text-sm border rounded"
                         />
                       </div>
@@ -213,6 +218,7 @@ const TimelineEditor = ({ section, onUpdate }) => {
                           onChange={(e) =>
                             handleEventChange(index, "type", e.target.value)
                           }
+                          onClick={stopPropagation}
                           className="w-full p-2 text-sm border rounded"
                         >
                           <option value="deadline">Deadline</option>
@@ -234,6 +240,7 @@ const TimelineEditor = ({ section, onUpdate }) => {
                           onChange={(e) =>
                             handleEventChange(index, "date", e.target.value)
                           }
+                          onClick={stopPropagation}
                           className="w-full p-2 text-sm border rounded"
                         />
                       </div>
@@ -247,6 +254,7 @@ const TimelineEditor = ({ section, onUpdate }) => {
                           onChange={(e) =>
                             handleEventChange(index, "time", e.target.value)
                           }
+                          onClick={stopPropagation}
                           className="w-full p-2 text-sm border rounded"
                         />
                       </div>
@@ -265,6 +273,7 @@ const TimelineEditor = ({ section, onUpdate }) => {
                             e.target.value
                           )
                         }
+                        onClick={stopPropagation}
                         className="w-full p-2 text-sm border rounded"
                         rows="2"
                       />
@@ -283,6 +292,7 @@ const TimelineEditor = ({ section, onUpdate }) => {
                             e.target.value
                           )
                         }
+                        onClick={stopPropagation}
                         className="w-full p-2 text-sm border rounded"
                       >
                         <option value="blue">Blue</option>
@@ -330,6 +340,7 @@ const TimelineEditor = ({ section, onUpdate }) => {
                                       e.target.value
                                     )
                                   }
+                                  onClick={stopPropagation}
                                   className="flex-1 p-1 text-xs border rounded"
                                 />
                                 <input
@@ -344,6 +355,7 @@ const TimelineEditor = ({ section, onUpdate }) => {
                                       e.target.value
                                     )
                                   }
+                                  onClick={stopPropagation}
                                   className="flex-1 p-1 text-xs border rounded"
                                 />
                                 <button

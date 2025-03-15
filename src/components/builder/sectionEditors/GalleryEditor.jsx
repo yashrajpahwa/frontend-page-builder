@@ -6,6 +6,7 @@ import {
   FaArrowDown,
   FaImage,
 } from "react-icons/fa";
+import { stopPropagation } from "./utils";
 
 const GalleryEditor = ({ section, onUpdate }) => {
   const { title, description, images = [], columns = 3 } = section.properties;
@@ -63,6 +64,7 @@ const GalleryEditor = ({ section, onUpdate }) => {
             type="text"
             value={title || ""}
             onChange={(e) => onUpdate({ title: e.target.value })}
+            onClick={stopPropagation}
             className="w-full p-2 border rounded focus:ring-blue-500 focus:border-blue-500"
           />
         </div>
@@ -74,6 +76,7 @@ const GalleryEditor = ({ section, onUpdate }) => {
           <textarea
             value={description || ""}
             onChange={(e) => onUpdate({ description: e.target.value })}
+            onClick={stopPropagation}
             className="w-full p-2 border rounded focus:ring-blue-500 focus:border-blue-500"
             rows="2"
           />
@@ -86,6 +89,7 @@ const GalleryEditor = ({ section, onUpdate }) => {
           <select
             value={columns}
             onChange={(e) => onUpdate({ columns: parseInt(e.target.value) })}
+            onClick={stopPropagation}
             className="w-full p-2 border rounded focus:ring-blue-500 focus:border-blue-500"
           >
             <option value={2}>2 Columns</option>
@@ -209,11 +213,13 @@ const GalleryEditor = ({ section, onUpdate }) => {
                     onChange={(e) =>
                       handleImageChange(activeImageIndex, "url", e.target.value)
                     }
+                    onClick={stopPropagation}
                     className="flex-1 p-2 text-sm border rounded-l"
                   />
                   <button
                     className="bg-gray-200 p-2 rounded-r border-t border-r border-b"
-                    onClick={() => {
+                    onClick={(e) => {
+                      e.stopPropagation();
                       // Image picker would go here
                       alert("Image picker would open here");
                     }}
@@ -237,6 +243,7 @@ const GalleryEditor = ({ section, onUpdate }) => {
                       e.target.value
                     )
                   }
+                  onClick={stopPropagation}
                   className="w-full p-2 text-sm border rounded"
                   placeholder="Image caption"
                 />
@@ -252,6 +259,7 @@ const GalleryEditor = ({ section, onUpdate }) => {
                   onChange={(e) =>
                     handleImageChange(activeImageIndex, "alt", e.target.value)
                   }
+                  onClick={stopPropagation}
                   className="w-full p-2 text-sm border rounded"
                   placeholder="Alternative text for accessibility"
                 />
@@ -274,6 +282,7 @@ const GalleryEditor = ({ section, onUpdate }) => {
                       e.target.value
                     )
                   }
+                  onClick={stopPropagation}
                   className="w-full p-2 text-sm border rounded"
                   placeholder="URL for high-resolution version"
                 />

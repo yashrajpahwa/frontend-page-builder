@@ -1,5 +1,6 @@
 import React from "react";
 import { FaImage } from "react-icons/fa";
+import { stopPropagation } from "./utils";
 
 const HeroEditor = ({ section, onUpdate }) => {
   const { title, subtitle, ctaText, ctaLink, imageUrl, alignment } =
@@ -18,6 +19,7 @@ const HeroEditor = ({ section, onUpdate }) => {
             type="text"
             value={title || ""}
             onChange={(e) => onUpdate({ title: e.target.value })}
+            onClick={stopPropagation}
             className="w-full p-2 border rounded focus:ring-blue-500 focus:border-blue-500"
           />
         </div>
@@ -29,6 +31,7 @@ const HeroEditor = ({ section, onUpdate }) => {
           <textarea
             value={subtitle || ""}
             onChange={(e) => onUpdate({ subtitle: e.target.value })}
+            onClick={stopPropagation}
             className="w-full p-2 border rounded focus:ring-blue-500 focus:border-blue-500"
             rows="2"
           />
@@ -43,6 +46,7 @@ const HeroEditor = ({ section, onUpdate }) => {
               type="text"
               value={ctaText || ""}
               onChange={(e) => onUpdate({ ctaText: e.target.value })}
+              onClick={stopPropagation}
               className="w-full p-2 border rounded focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
@@ -54,6 +58,7 @@ const HeroEditor = ({ section, onUpdate }) => {
               type="text"
               value={ctaLink || ""}
               onChange={(e) => onUpdate({ ctaLink: e.target.value })}
+              onClick={stopPropagation}
               className="w-full p-2 border rounded focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
@@ -70,6 +75,7 @@ const HeroEditor = ({ section, onUpdate }) => {
                 value="left"
                 checked={alignment === "left"}
                 onChange={() => onUpdate({ alignment: "left" })}
+                onClick={stopPropagation}
                 className="form-radio"
               />
               <span className="ml-2">Left</span>
@@ -80,6 +86,7 @@ const HeroEditor = ({ section, onUpdate }) => {
                 value="right"
                 checked={alignment === "right"}
                 onChange={() => onUpdate({ alignment: "right" })}
+                onClick={stopPropagation}
                 className="form-radio"
               />
               <span className="ml-2">Right</span>
@@ -96,11 +103,13 @@ const HeroEditor = ({ section, onUpdate }) => {
               type="text"
               value={imageUrl || ""}
               onChange={(e) => onUpdate({ imageUrl: e.target.value })}
+              onClick={stopPropagation}
               className="flex-1 p-2 border rounded-l focus:ring-blue-500 focus:border-blue-500"
             />
             <button
               className="bg-gray-200 p-2 rounded-r border-t border-r border-b"
-              onClick={() => {
+              onClick={(e) => {
+                e.stopPropagation();
                 // You could implement an image picker here
                 alert("Image picker would open here");
               }}

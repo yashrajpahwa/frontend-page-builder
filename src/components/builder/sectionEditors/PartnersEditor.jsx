@@ -7,6 +7,7 @@ import {
   FaImage,
   FaExternalLinkAlt,
 } from "react-icons/fa";
+import { stopPropagation } from "./utils";
 
 const PartnersEditor = ({ section, onUpdate }) => {
   const {
@@ -90,6 +91,7 @@ const PartnersEditor = ({ section, onUpdate }) => {
             type="text"
             value={title || ""}
             onChange={(e) => onUpdate({ title: e.target.value })}
+            onClick={stopPropagation}
             className="w-full p-2 border rounded focus:ring-blue-500 focus:border-blue-500"
           />
         </div>
@@ -101,6 +103,7 @@ const PartnersEditor = ({ section, onUpdate }) => {
           <textarea
             value={description || ""}
             onChange={(e) => onUpdate({ description: e.target.value })}
+            onClick={stopPropagation}
             className="w-full p-2 border rounded focus:ring-blue-500 focus:border-blue-500"
             rows="2"
           />
@@ -112,6 +115,7 @@ const PartnersEditor = ({ section, onUpdate }) => {
               type="checkbox"
               checked={type === "media"}
               onChange={togglePartnerType}
+              onClick={stopPropagation}
               className="mr-2"
             />
             Media Partners Layout (simplified)
@@ -215,6 +219,7 @@ const PartnersEditor = ({ section, onUpdate }) => {
                         onChange={(e) =>
                           handlePartnerChange(index, "name", e.target.value)
                         }
+                        onClick={stopPropagation}
                         className="w-full p-2 text-sm border rounded"
                       />
                     </div>
@@ -234,6 +239,7 @@ const PartnersEditor = ({ section, onUpdate }) => {
                               e.target.value
                             )
                           }
+                          onClick={stopPropagation}
                           className="flex-1 p-2 text-sm border rounded-l"
                         />
                         <button
@@ -258,6 +264,7 @@ const PartnersEditor = ({ section, onUpdate }) => {
                         onChange={(e) =>
                           handlePartnerChange(index, "tagline", e.target.value)
                         }
+                        onClick={stopPropagation}
                         className="w-full p-2 text-sm border rounded"
                       />
                     </div>
@@ -273,6 +280,7 @@ const PartnersEditor = ({ section, onUpdate }) => {
                           onChange={(e) =>
                             handlePartnerChange(index, "url", e.target.value)
                           }
+                          onClick={stopPropagation}
                           className="flex-1 p-2 text-sm border rounded-l"
                           placeholder="https://example.com"
                         />
@@ -305,6 +313,7 @@ const PartnersEditor = ({ section, onUpdate }) => {
                                 e.target.value
                               )
                             }
+                            onClick={stopPropagation}
                             className="w-full p-2 text-sm border rounded"
                             rows="2"
                           />
@@ -325,6 +334,7 @@ const PartnersEditor = ({ section, onUpdate }) => {
                                   e.target.value
                                 )
                               }
+                              onClick={stopPropagation}
                               className="flex-1 p-2 text-sm border rounded-l"
                             />
                             <button

@@ -1,5 +1,6 @@
 import React from "react";
 import { Editor } from "@tinymce/tinymce-react";
+import { stopPropagation } from "./utils";
 
 const FreestyleEditor = ({ section, onUpdate }) => {
   const { title, content, backgroundColor, maxWidth } = section.properties;
@@ -17,6 +18,7 @@ const FreestyleEditor = ({ section, onUpdate }) => {
             type="text"
             value={title || ""}
             onChange={(e) => onUpdate({ title: e.target.value })}
+            onClick={stopPropagation}
             className="w-full p-2 border rounded focus:ring-blue-500 focus:border-blue-500"
           />
         </div>
@@ -29,6 +31,7 @@ const FreestyleEditor = ({ section, onUpdate }) => {
             <select
               value={backgroundColor || "white"}
               onChange={(e) => onUpdate({ backgroundColor: e.target.value })}
+              onClick={stopPropagation}
               className="w-full p-2 border rounded focus:ring-blue-500 focus:border-blue-500"
             >
               <option value="white">White</option>
@@ -45,6 +48,7 @@ const FreestyleEditor = ({ section, onUpdate }) => {
             <select
               value={maxWidth || ""}
               onChange={(e) => onUpdate({ maxWidth: e.target.value })}
+              onClick={stopPropagation}
               className="w-full p-2 border rounded focus:ring-blue-500 focus:border-blue-500"
             >
               <option value="">Full Width</option>
@@ -66,44 +70,46 @@ const FreestyleEditor = ({ section, onUpdate }) => {
           <label className="block text-sm font-medium text-gray-700 mb-1">
             Content
           </label>
-          <Editor
-            tinymceScriptSrc="https://cdn.jsdelivr.net/npm/tinymce@7.6.0/tinymce.min.js"
-            initialValue={
-              content || "<p>Start editing your content here...</p>"
-            }
-            init={{
-              height: 500,
-              menubar: true,
-              plugins: [
-                "advlist",
-                "autolink",
-                "lists",
-                "link",
-                "image",
-                "charmap",
-                "preview",
-                "anchor",
-                "searchreplace",
-                "visualblocks",
-                "code",
-                "fullscreen",
-                "insertdatetime",
-                "media",
-                "table",
-                "code",
-                "help",
-                "wordcount",
-              ],
-              toolbar:
-                "undo redo | blocks | " +
-                "bold italic forecolor | alignleft aligncenter " +
-                "alignright alignjustify | bullist numlist outdent indent | " +
-                "removeformat | help",
-              content_style:
-                "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
-            }}
-            onEditorChange={(newContent) => onUpdate({ content: newContent })}
-          />
+          <div onClick={stopPropagation} className="editor-interactive">
+            <Editor
+              tinymceScriptSrc="https://cdn.jsdelivr.net/npm/tinymce@7.6.0/tinymce.min.js"
+              initialValue={
+                content || "<p>Start editing your content here...</p>"
+              }
+              init={{
+                height: 500,
+                menubar: true,
+                plugins: [
+                  "advlist",
+                  "autolink",
+                  "lists",
+                  "link",
+                  "image",
+                  "charmap",
+                  "preview",
+                  "anchor",
+                  "searchreplace",
+                  "visualblocks",
+                  "code",
+                  "fullscreen",
+                  "insertdatetime",
+                  "media",
+                  "table",
+                  "code",
+                  "help",
+                  "wordcount",
+                ],
+                toolbar:
+                  "undo redo | blocks | " +
+                  "bold italic forecolor | alignleft aligncenter " +
+                  "alignright alignjustify | bullist numlist outdent indent | " +
+                  "removeformat | help",
+                content_style:
+                  "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
+              }}
+              onEditorChange={(newContent) => onUpdate({ content: newContent })}
+            />
+          </div>
         </div>
       </div>
     </div>

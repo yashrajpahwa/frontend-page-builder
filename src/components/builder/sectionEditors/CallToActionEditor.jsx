@@ -1,4 +1,5 @@
 import React from "react";
+import { stopPropagation } from "./utils";
 
 const CallToActionEditor = ({ section, onUpdate }) => {
   const {
@@ -22,6 +23,7 @@ const CallToActionEditor = ({ section, onUpdate }) => {
             type="text"
             value={title || ""}
             onChange={(e) => onUpdate({ title: e.target.value })}
+            onClick={stopPropagation}
             className="w-full p-2 border rounded focus:ring-blue-500 focus:border-blue-500"
           />
         </div>
@@ -33,6 +35,7 @@ const CallToActionEditor = ({ section, onUpdate }) => {
           <textarea
             value={description || ""}
             onChange={(e) => onUpdate({ description: e.target.value })}
+            onClick={stopPropagation}
             className="w-full p-2 border rounded focus:ring-blue-500 focus:border-blue-500"
             rows="2"
           />
@@ -47,6 +50,7 @@ const CallToActionEditor = ({ section, onUpdate }) => {
               type="text"
               value={buttonText || ""}
               onChange={(e) => onUpdate({ buttonText: e.target.value })}
+              onClick={stopPropagation}
               className="w-full p-2 border rounded focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
@@ -59,6 +63,7 @@ const CallToActionEditor = ({ section, onUpdate }) => {
               type="text"
               value={buttonLink || ""}
               onChange={(e) => onUpdate({ buttonLink: e.target.value })}
+              onClick={stopPropagation}
               className="w-full p-2 border rounded focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
@@ -71,6 +76,7 @@ const CallToActionEditor = ({ section, onUpdate }) => {
           <select
             value={backgroundColor}
             onChange={(e) => onUpdate({ backgroundColor: e.target.value })}
+            onClick={stopPropagation}
             className="w-full p-2 border rounded focus:ring-blue-500 focus:border-blue-500"
           >
             <option value="accent">Accent Color</option>

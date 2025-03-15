@@ -1,5 +1,6 @@
 import React from "react";
 import { FaImage } from "react-icons/fa";
+import { stopPropagation } from "./utils";
 
 const TextWithImageEditor = ({ section, onUpdate }) => {
   const {
@@ -24,6 +25,7 @@ const TextWithImageEditor = ({ section, onUpdate }) => {
             type="text"
             value={title || ""}
             onChange={(e) => onUpdate({ title: e.target.value })}
+            onClick={stopPropagation}
             className="w-full p-2 border rounded focus:ring-blue-500 focus:border-blue-500"
           />
         </div>
@@ -35,6 +37,7 @@ const TextWithImageEditor = ({ section, onUpdate }) => {
           <textarea
             value={content || ""}
             onChange={(e) => onUpdate({ content: e.target.value })}
+            onClick={stopPropagation}
             className="w-full p-2 border rounded focus:ring-blue-500 focus:border-blue-500"
             rows="4"
           />
@@ -51,6 +54,7 @@ const TextWithImageEditor = ({ section, onUpdate }) => {
                 value="left"
                 checked={imagePosition === "left"}
                 onChange={() => onUpdate({ imagePosition: "left" })}
+                onClick={stopPropagation}
                 className="form-radio"
               />
               <span className="ml-2">Left</span>
@@ -61,6 +65,7 @@ const TextWithImageEditor = ({ section, onUpdate }) => {
                 value="right"
                 checked={imagePosition === "right"}
                 onChange={() => onUpdate({ imagePosition: "right" })}
+                onClick={stopPropagation}
                 className="form-radio"
               />
               <span className="ml-2">Right</span>
@@ -77,11 +82,13 @@ const TextWithImageEditor = ({ section, onUpdate }) => {
               type="text"
               value={imageUrl || ""}
               onChange={(e) => onUpdate({ imageUrl: e.target.value })}
+              onClick={stopPropagation}
               className="flex-1 p-2 border rounded-l focus:ring-blue-500 focus:border-blue-500"
             />
             <button
               className="bg-gray-200 p-2 rounded-r border-t border-r border-b"
-              onClick={() => {
+              onClick={(e) => {
+                e.stopPropagation();
                 // You could implement an image picker here
                 alert("Image picker would open here");
               }}
@@ -100,6 +107,7 @@ const TextWithImageEditor = ({ section, onUpdate }) => {
               type="text"
               value={buttonText || ""}
               onChange={(e) => onUpdate({ buttonText: e.target.value })}
+              onClick={stopPropagation}
               className="w-full p-2 border rounded focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
@@ -111,6 +119,7 @@ const TextWithImageEditor = ({ section, onUpdate }) => {
               type="text"
               value={buttonLink || ""}
               onChange={(e) => onUpdate({ buttonLink: e.target.value })}
+              onClick={stopPropagation}
               className="w-full p-2 border rounded focus:ring-blue-500 focus:border-blue-500"
             />
           </div>

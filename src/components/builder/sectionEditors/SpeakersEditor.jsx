@@ -7,6 +7,7 @@ import {
   FaImage,
   FaLink,
 } from "react-icons/fa";
+import { stopPropagation } from "./utils";
 
 const SpeakersEditor = ({ section, onUpdate }) => {
   const { title, description, speakers = [] } = section.properties;
@@ -83,6 +84,7 @@ const SpeakersEditor = ({ section, onUpdate }) => {
             type="text"
             value={title || ""}
             onChange={(e) => onUpdate({ title: e.target.value })}
+            onClick={stopPropagation}
             className="w-full p-2 border rounded focus:ring-blue-500 focus:border-blue-500"
           />
         </div>
@@ -94,6 +96,7 @@ const SpeakersEditor = ({ section, onUpdate }) => {
           <textarea
             value={description || ""}
             onChange={(e) => onUpdate({ description: e.target.value })}
+            onClick={stopPropagation}
             className="w-full p-2 border rounded focus:ring-blue-500 focus:border-blue-500"
             rows="2"
           />
@@ -193,6 +196,7 @@ const SpeakersEditor = ({ section, onUpdate }) => {
                           onChange={(e) =>
                             handleSpeakerChange(index, "name", e.target.value)
                           }
+                          onClick={stopPropagation}
                           className="w-full p-2 text-sm border rounded"
                         />
                       </div>
@@ -207,6 +211,7 @@ const SpeakersEditor = ({ section, onUpdate }) => {
                           onChange={(e) =>
                             handleSpeakerChange(index, "title", e.target.value)
                           }
+                          onClick={stopPropagation}
                           className="w-full p-2 text-sm border rounded"
                         />
                       </div>
@@ -227,6 +232,7 @@ const SpeakersEditor = ({ section, onUpdate }) => {
                               e.target.value
                             )
                           }
+                          onClick={stopPropagation}
                           className="w-full p-2 text-sm border rounded"
                         />
                       </div>
@@ -246,6 +252,7 @@ const SpeakersEditor = ({ section, onUpdate }) => {
                                 e.target.value
                               )
                             }
+                            onClick={stopPropagation}
                             className="flex-1 p-2 text-sm border rounded-l"
                           />
                           <button
@@ -270,6 +277,7 @@ const SpeakersEditor = ({ section, onUpdate }) => {
                         onChange={(e) =>
                           handleSpeakerChange(index, "bio", e.target.value)
                         }
+                        onClick={stopPropagation}
                         className="w-full p-2 text-sm border rounded"
                         rows="3"
                       />
@@ -290,6 +298,7 @@ const SpeakersEditor = ({ section, onUpdate }) => {
                               e.target.value
                             )
                           }
+                          onClick={stopPropagation}
                           className="flex-1 p-2 text-sm border rounded-l"
                         />
                         <button
@@ -327,6 +336,7 @@ const SpeakersEditor = ({ section, onUpdate }) => {
                                 e.target.value
                               )
                             }
+                            onClick={stopPropagation}
                             className="flex-1 p-2 text-sm border rounded"
                             placeholder="https://linkedin.com/in/username"
                           />
@@ -350,6 +360,7 @@ const SpeakersEditor = ({ section, onUpdate }) => {
                                 e.target.value
                               )
                             }
+                            onClick={stopPropagation}
                             className="flex-1 p-2 text-sm border rounded"
                             placeholder="https://twitter.com/username"
                           />
@@ -373,6 +384,7 @@ const SpeakersEditor = ({ section, onUpdate }) => {
                                 e.target.value
                               )
                             }
+                            onClick={stopPropagation}
                             className="flex-1 p-2 text-sm border rounded"
                             placeholder="https://website.com"
                           />
