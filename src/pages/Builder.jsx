@@ -24,6 +24,7 @@ import defaultConfig from "../data/pageConfig.json";
 import ImportModal from "../components/builder/ImportModal";
 import WelcomeGuide from "../components/builder/WelcomeGuide";
 import TemplateSelector from "../components/builder/TemplateSelector";
+import Preview from "../components/builder/Preview";
 
 const Builder = () => {
   const [pageConfig, setPageConfig] = useState(null);
@@ -38,6 +39,7 @@ const Builder = () => {
   const [showWelcomeGuide, setShowWelcomeGuide] = useState(false);
   const [showTemplateSelector, setShowTemplateSelector] = useState(false);
   const [firstVisit, setFirstVisit] = useState(true);
+  const [previewConfig, setPreviewConfig] = useState(null);
 
   // Initialize page config
   useEffect(() => {
@@ -330,6 +332,14 @@ const Builder = () => {
     }
   };
 
+  const togglePreview = () => {
+    if (!previewMode) {
+      // When enabling preview, set the current configuration
+      setPreviewConfig(JSON.parse(JSON.stringify(pageConfig)));
+    }
+    setPreviewMode(!previewMode);
+  };
+
   // If page config isn't loaded yet
   if (!pageConfig) {
     return (
@@ -364,7 +374,7 @@ const Builder = () => {
 
           <button
             className="px-3 py-2 bg-green-600 text-white rounded hover:bg-green-700 flex items-center justify-center"
-            onClick={() => setPreviewMode(!previewMode)}
+            onClick={togglePreview}
           >
             <FaEye className="mr-1" /> Preview
           </button>
@@ -612,7 +622,7 @@ const Builder = () => {
           <div>
             <button
               className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 mr-2"
-              onClick={() => setPreviewMode(!previewMode)}
+              onClick={togglePreview}
             >
               {previewMode ? "Back to Editing" : "Preview Page"}
             </button>
@@ -628,12 +638,9 @@ const Builder = () => {
         {/* Content Area */}
         <div className="flex-1 overflow-auto">
           {previewMode ? (
-            <iframe
-              title="Page Preview"
-              src={`/dynamic?preview=${encodeURIComponent(
-                JSON.stringify(pageConfig)
-              )}`}
-              className="w-full h-full border-none"
+            <Preview
+              config={previewConfig}
+              onClose={() => setPreviewMode(false)}
             />
           ) : activeSection ? (
             <div className="p-6">

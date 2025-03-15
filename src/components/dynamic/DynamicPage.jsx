@@ -33,10 +33,39 @@ const DynamicPage = () => {
     const fetchPageConfig = async () => {
       setIsLoading(true);
       try {
-        // In a real app, this would be a fetch request to get the page config
-        // For now, we'll use the default config with a simulated delay
-        await new Promise((resolve) => setTimeout(resolve, 800));
-        const configData = defaultConfig;
+        // Check for URL params
+        const params = new URLSearchParams(window.location.search);
+        const previewParam = params.get("preview");
+
+        let configData;
+
+        // Handle blob preview (from sessionStorage)
+        if (previewParam === "blob") {
+          // Get config from sessionStorage
+          const storedConfig = sessionStorage.getItem("previewConfig");
+          if (storedConfig) {
+            configData = JSON.parse(storedConfig);
+          } else {
+            throw new Error("Preview configuration not found");
+          }
+        }
+        // Handle directly passed JSON
+        else if (previewParam) {
+          try {
+            // Try to parse the preview parameter as JSON
+            configData = JSON.parse(previewParam);
+          } catch (e) {
+            console.error("Failed to parse preview JSON:", e);
+            // If this fails, we'll fall back to the default config
+          }
+        }
+
+        // If we still don't have config data, use the default
+        if (!configData) {
+          await new Promise((resolve) => setTimeout(resolve, 800));
+          configData = defaultConfig;
+        }
+
         setPageConfig(configData);
 
         // Find header and footer configurations or use defaults

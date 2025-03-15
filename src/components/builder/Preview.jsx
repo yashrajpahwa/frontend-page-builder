@@ -1,8 +1,31 @@
-import React from "react";
-import { FaTimes, FaDesktop, FaTabletAlt, FaMobileAlt } from "react-icons/fa";
+import React, { useState, useEffect } from "react";
+import {
+  FaTimes,
+  FaDesktop,
+  FaTabletAlt,
+  FaMobileAlt,
+  FaSync,
+} from "react-icons/fa";
 
 const Preview = ({ config, onClose }) => {
-  const [viewMode, setViewMode] = React.useState("desktop");
+  const [viewMode, setViewMode] = useState("desktop");
+  const [previewUrl, setPreviewUrl] = useState("");
+
+  useEffect(() => {
+    // Create a data URL from the config to avoid URL length limitations
+    const blob = new Blob([JSON.stringify(config)], {
+      type: "application/json",
+    });
+    const url = URL.createObjectURL(blob);
+    setPreviewUrl(`/dynamic?preview=blob&timestamp=${Date.now()}`);
+
+    // Store the config in sessionStorage
+    sessionStorage.setItem("previewConfig", JSON.stringify(config));
+
+    return () => {
+      URL.revokeObjectURL(url);
+    };
+  }, [config]);
 
   const getFrameWidth = () => {
     switch (viewMode) {
@@ -13,6 +36,10 @@ const Preview = ({ config, onClose }) => {
       default:
         return "w-full";
     }
+  };
+
+  const refreshPreview = () => {
+    setPreviewUrl(`/dynamic?preview=blob&timestamp=${Date.now()}`);
   };
 
   return (
@@ -52,6 +79,13 @@ const Preview = ({ config, onClose }) => {
           >
             <FaMobileAlt />
           </button>
+          <button
+            onClick={refreshPreview}
+            className="p-2 rounded text-gray-400 hover:text-white ml-4"
+            title="Refresh Preview"
+          >
+            <FaSync />
+          </button>
         </div>
 
         <button
@@ -66,13 +100,14 @@ const Preview = ({ config, onClose }) => {
         <div
           className={`h-full ${getFrameWidth()} bg-white rounded shadow overflow-hidden transition-all duration-300`}
         >
-          <iframe
-            src={`/dynamic?preview=${encodeURIComponent(
-              JSON.stringify(config)
-            )}`}
-            className="w-full h-full border-none"
-            title="Page Preview"
-          />
+          {previewUrl && (
+            <iframe
+              src={previewUrl}
+              className="w-full h-full border-none"
+              title="Page Preview"
+              sandbox="allow-same-origin allow-scripts"
+            />
+          )}
         </div>
       </div>
     </div>
