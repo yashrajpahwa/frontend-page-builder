@@ -26,6 +26,14 @@ import WelcomeGuide from "../components/builder/WelcomeGuide";
 import TemplateSelector from "../components/builder/TemplateSelector";
 import Preview from "../components/builder/Preview";
 
+// Local storage keys
+const STORAGE_KEYS = {
+  PAGE_CONFIG: "pageBuilderConfig",
+  HISTORY: "pageBuilderHistory",
+  HISTORY_INDEX: "pageBuilderHistoryIndex",
+  HAS_VISITED: "hasVisitedBuilder",
+};
+
 const Builder = () => {
   const [pageConfig, setPageConfig] = useState(null);
   const [activeSection, setActiveSection] = useState(null);
@@ -41,35 +49,101 @@ const Builder = () => {
   const [firstVisit, setFirstVisit] = useState(true);
   const [previewConfig, setPreviewConfig] = useState(null);
 
+  // Save current page config to localStorage
+  const saveToLocalStorage = (config) => {
+    try {
+      localStorage.setItem(STORAGE_KEYS.PAGE_CONFIG, JSON.stringify(config));
+    } catch (error) {
+      console.error("Error saving to localStorage:", error);
+    }
+  };
+
+  // Save history to localStorage
+  const saveHistoryToLocalStorage = (newHistory, newIndex) => {
+    try {
+      localStorage.setItem(STORAGE_KEYS.HISTORY, JSON.stringify(newHistory));
+      localStorage.setItem(STORAGE_KEYS.HISTORY_INDEX, newIndex.toString());
+    } catch (error) {
+      console.error("Error saving history to localStorage:", error);
+    }
+  };
+
   // Initialize page config
   useEffect(() => {
     // Check if it's the first visit
-    const hasVisitedBefore = localStorage.getItem("hasVisitedBuilder");
+    const hasVisitedBefore = localStorage.getItem(STORAGE_KEYS.HAS_VISITED);
     if (!hasVisitedBefore) {
       setFirstVisit(true);
       setShowTemplateSelector(true);
-      localStorage.setItem("hasVisitedBuilder", "true");
+      localStorage.setItem(STORAGE_KEYS.HAS_VISITED, "true");
     } else {
       setFirstVisit(false);
     }
 
-    // Start with a minimal config
-    const initialConfig = {
-      pageId: "new-page",
-      title: "New Page",
-      theme: {
-        primary: "blue",
-        secondary: "gray",
-        accent: "yellow",
-        background: "light",
-        fontFamily: "sans",
-      },
-      sections: [],
-    };
+    // Try to load saved config from localStorage
+    let initialConfig;
+    try {
+      const savedConfig = localStorage.getItem(STORAGE_KEYS.PAGE_CONFIG);
+      if (savedConfig) {
+        initialConfig = JSON.parse(savedConfig);
+        console.log("Loaded saved configuration from localStorage");
+      } else {
+        // Start with a minimal config if nothing in localStorage
+        initialConfig = {
+          pageId: "new-page",
+          title: "New Page",
+          theme: {
+            primary: "blue",
+            secondary: "gray",
+            accent: "yellow",
+            background: "light",
+            fontFamily: "sans",
+          },
+          sections: [],
+        };
+      }
+    } catch (error) {
+      console.error("Error loading from localStorage:", error);
+      // Fallback to default config
+      initialConfig = {
+        pageId: "new-page",
+        title: "New Page",
+        theme: {
+          primary: "blue",
+          secondary: "gray",
+          accent: "yellow",
+          background: "light",
+          fontFamily: "sans",
+        },
+        sections: [],
+      };
+    }
+
     setPageConfig(initialConfig);
-    // Initialize history with initial config
-    setHistory([initialConfig]);
-    setHistoryIndex(0);
+
+    // Initialize history
+    let initialHistory = [];
+    let initialHistoryIndex = 0;
+
+    try {
+      const savedHistory = localStorage.getItem(STORAGE_KEYS.HISTORY);
+      const savedHistoryIndex = localStorage.getItem(
+        STORAGE_KEYS.HISTORY_INDEX
+      );
+
+      if (savedHistory && savedHistoryIndex) {
+        initialHistory = JSON.parse(savedHistory);
+        initialHistoryIndex = parseInt(savedHistoryIndex, 10);
+      } else {
+        initialHistory = [initialConfig];
+      }
+    } catch (error) {
+      console.error("Error loading history from localStorage:", error);
+      initialHistory = [initialConfig];
+    }
+
+    setHistory(initialHistory);
+    setHistoryIndex(initialHistoryIndex);
 
     // Get available section types from the editors
     const sectionTypes = Object.keys(sectionEditors).map((type) => ({
@@ -105,22 +179,39 @@ const Builder = () => {
       newHistory.shift();
     }
     setHistory(newHistory);
-    setHistoryIndex(newHistory.length - 1);
+    const newIndex = newHistory.length - 1;
+    setHistoryIndex(newIndex);
+
+    // Save to localStorage
+    saveToLocalStorage(newConfig);
+    saveHistoryToLocalStorage(newHistory, newIndex);
   };
 
   // Undo function
   const handleUndo = () => {
     if (historyIndex > 0) {
-      setHistoryIndex(historyIndex - 1);
-      setPageConfig(JSON.parse(JSON.stringify(history[historyIndex - 1])));
+      const newIndex = historyIndex - 1;
+      const prevConfig = JSON.parse(JSON.stringify(history[newIndex]));
+      setHistoryIndex(newIndex);
+      setPageConfig(prevConfig);
+
+      // Update localStorage
+      saveToLocalStorage(prevConfig);
+      saveHistoryToLocalStorage(history, newIndex);
     }
   };
 
   // Redo function
   const handleRedo = () => {
     if (historyIndex < history.length - 1) {
-      setHistoryIndex(historyIndex + 1);
-      setPageConfig(JSON.parse(JSON.stringify(history[historyIndex + 1])));
+      const newIndex = historyIndex + 1;
+      const nextConfig = JSON.parse(JSON.stringify(history[newIndex]));
+      setHistoryIndex(newIndex);
+      setPageConfig(nextConfig);
+
+      // Update localStorage
+      saveToLocalStorage(nextConfig);
+      saveHistoryToLocalStorage(history, newIndex);
     }
   };
 
@@ -327,7 +418,16 @@ const Builder = () => {
       };
       setPageConfig(initialConfig);
       setActiveSection(null);
-      addToHistory(initialConfig);
+
+      // Reset history when starting a new project
+      const newHistory = [initialConfig];
+      setHistory(newHistory);
+      setHistoryIndex(0);
+
+      // Update localStorage
+      saveToLocalStorage(initialConfig);
+      saveHistoryToLocalStorage(newHistory, 0);
+
       toast.success("New project started");
     }
   };
@@ -441,6 +541,16 @@ const Builder = () => {
             >
               New
             </button>
+            <button
+              onClick={() => {
+                saveToLocalStorage(pageConfig);
+                toast.success("Project saved");
+              }}
+              className="p-1 text-white hover:bg-gray-600 rounded"
+              title="Save Project"
+            >
+              <FaSave />
+            </button>
           </div>
         </div>
 
@@ -453,9 +563,11 @@ const Builder = () => {
               const updatedConfig = { ...pageConfig, title: e.target.value };
               setPageConfig(updatedConfig);
               // Don't add to history on every keystroke
-              // Add to history after a delay or on blur
             }}
-            onBlur={() => addToHistory(pageConfig)}
+            onBlur={() => {
+              // Save to history and localStorage on blur
+              addToHistory(pageConfig);
+            }}
             className="px-2 py-1 bg-gray-700 rounded border border-gray-600 text-white"
           />
         </div>
