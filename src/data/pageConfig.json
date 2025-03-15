@@ -1,0 +1,444 @@
+{
+  "pageId": "homepage",
+  "title": "Dynamic Home Page",
+  "theme": {
+    "primary": "blue",
+    "secondary": "gray",
+    "accent": "yellow",
+    "background": "light",
+    "fontFamily": "sans"
+  },
+  "sections": [
+    {
+      "id": "header",
+      "type": "header",
+      "properties": {
+        "logoText": "DynamicBuilder",
+        "logo": "https://placehold.co/200x60/4299e1/ffffff?text=Logo",
+        "sticky": true,
+        "transparent": true,
+        "autoGenerate": true,
+        "menuItems": [],
+        "cta": {
+          "label": "Get Started",
+          "href": "/signup"
+        }
+      }
+    },
+    {
+      "id": "hero",
+      "type": "hero",
+      "properties": {
+        "title": "Welcome to Our Platform",
+        "subtitle": "Build dynamic pages with ease",
+        "ctaText": "Get Started",
+        "ctaLink": "/get-started",
+        "imageUrl": "https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80",
+        "alignment": "left"
+      }
+    },
+    {
+      "id": "features",
+      "type": "cardGrid",
+      "properties": {
+        "title": "Key Features",
+        "columns": 3,
+        "cards": [
+          {
+            "title": "Dynamic Components",
+            "description": "Build your page with reusable components",
+            "icon": "FaLayerGroup"
+          },
+          {
+            "title": "JSON Configuration",
+            "description": "Configure your entire page with simple JSON",
+            "icon": "FaCode"
+          },
+          {
+            "title": "Responsive Design",
+            "description": "Pages look great on all devices",
+            "icon": "FaMobileAlt"
+          },
+          {
+            "title": "Theme Customization",
+            "description": "Easily adjust colors and styling",
+            "icon": "FaPalette"
+          },
+          {
+            "title": "Flexible Layouts",
+            "description": "Create any layout you need",
+            "icon": "FaColumns"
+          },
+          {
+            "title": "Rapid Development",
+            "description": "Build pages faster than ever",
+            "icon": "FaBolt"
+          }
+        ]
+      }
+    },
+    {
+      "id": "content",
+      "type": "textWithImage",
+      "properties": {
+        "title": "How It Works",
+        "content": "Our platform allows you to build dynamic pages using a simple JSON configuration. You can specify the components, their properties, and the overall theme of the page. This makes it easy to create and update pages without having to write code.",
+        "imageUrl": "https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+        "imagePosition": "right",
+        "buttonText": "Learn More",
+        "buttonLink": "/learn-more"
+      }
+    },
+    {
+      "id": "speakers",
+      "type": "speakers",
+      "properties": {
+        "title": "Meet Our Speakers",
+        "description": "Industry leaders sharing their insights",
+        "speakers": [
+          {
+            "name": "Alexandra Johnson",
+            "title": "Chief Technology Officer",
+            "company": "TechForward",
+            "imageUrl": "https://randomuser.me/api/portraits/women/23.jpg",
+            "companyLogo": "https://placehold.co/200x200/4299e1/ffffff?text=TF",
+            "bio": "Alexandra has over 15 years of experience in software architecture and digital transformation.",
+            "socialLinks": {
+              "linkedin": "https://linkedin.com",
+              "twitter": "https://twitter.com",
+              "website": "https://example.com"
+            }
+          },
+          {
+            "name": "Michael Chen",
+            "title": "AI Research Lead",
+            "company": "FutureLabs",
+            "imageUrl": "https://randomuser.me/api/portraits/men/45.jpg",
+            "companyLogo": "https://placehold.co/200x200/38a169/ffffff?text=FL",
+            "bio": "Michael specializes in machine learning algorithms and natural language processing.",
+            "socialLinks": {
+              "linkedin": "https://linkedin.com",
+              "twitter": "https://twitter.com"
+            }
+          },
+          {
+            "name": "Sarah Williams",
+            "title": "UX Design Director",
+            "company": "CreativeEdge",
+            "imageUrl": "https://randomuser.me/api/portraits/women/65.jpg",
+            "companyLogo": "https://placehold.co/200x200/e53e3e/ffffff?text=CE",
+            "bio": "Sarah has helped dozens of companies improve their user experience and product design.",
+            "socialLinks": {
+              "linkedin": "https://linkedin.com",
+              "website": "https://example.com"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "gallery",
+      "type": "gallery",
+      "properties": {
+        "title": "Event Highlights",
+        "description": "Moments from our previous events",
+        "columns": 3,
+        "images": [
+          {
+            "url": "https://images.unsplash.com/photo-1540317580384-e5d43867caa6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+            "caption": "Keynote presentation at our annual conference"
+          },
+          {
+            "url": "https://images.unsplash.com/photo-1528605248644-14dd04022da1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+            "caption": "Networking session with industry leaders"
+          },
+          {
+            "url": "https://images.unsplash.com/photo-1515187029135-18ee286d815b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+            "caption": "Workshop on emerging technologies"
+          },
+          {
+            "url": "https://images.unsplash.com/photo-1560439514-4e9645039924?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+            "caption": "Panel discussion on digital transformation"
+          },
+          {
+            "url": "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+            "caption": "Product showcase and demonstrations"
+          },
+          {
+            "url": "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80",
+            "caption": "Award ceremony for innovation"
+          }
+        ]
+      }
+    },
+    {
+      "id": "testimonials",
+      "type": "testimonials",
+      "properties": {
+        "title": "What Our Users Say",
+        "testimonials": [
+          {
+            "quote": "This platform has revolutionized how we build our marketing pages. So quick and easy!",
+            "author": "Jane Smith",
+            "role": "Marketing Director",
+            "avatarUrl": "https://randomuser.me/api/portraits/women/17.jpg"
+          },
+          {
+            "quote": "I can update our entire website without bothering our developers. It's a game-changer.",
+            "author": "John Doe",
+            "role": "Product Manager",
+            "avatarUrl": "https://randomuser.me/api/portraits/men/32.jpg"
+          },
+          {
+            "quote": "The flexibility of the system is amazing. We've cut our page development time in half.",
+            "author": "Sarah Johnson",
+            "role": "Content Strategist",
+            "avatarUrl": "https://randomuser.me/api/portraits/women/44.jpg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "partners",
+      "type": "partners",
+      "properties": {
+        "title": "Our Partners",
+        "description": "We collaborate with industry-leading companies that share our vision for innovation and excellence.",
+        "partners": [
+          {
+            "name": "Acme Inc",
+            "logoUrl": "https://placehold.co/200x80/4299e1/ffffff?text=ACME",
+            "bannerUrl": "https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+            "tagline": "Building the future of technology",
+            "description": "Acme Inc has been at the forefront of technological innovation for over two decades, specializing in cloud infrastructure and AI solutions.",
+            "url": "https://example.com"
+          },
+          {
+            "name": "TechCorp",
+            "logoUrl": "https://placehold.co/200x80/38a169/ffffff?text=TechCorp",
+            "bannerUrl": "https://images.unsplash.com/photo-1496171367470-9ed9a91ea931?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+            "tagline": "Empowering digital transformation",
+            "description": "TechCorp helps businesses navigate digital transformation with comprehensive services and cutting-edge solutions.",
+            "url": "https://example.com"
+          },
+          {
+            "name": "InnovateLabs",
+            "logoUrl": "https://placehold.co/200x80/e53e3e/ffffff?text=InnovateLabs",
+            "bannerUrl": "https://images.unsplash.com/photo-1521737711867-e3b97375f902?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+            "tagline": "Research-driven innovation",
+            "description": "InnovateLabs combines academic research with practical applications to create breakthrough technologies for various industries.",
+            "url": "https://example.com"
+          },
+          {
+            "name": "GlobalSolutions",
+            "logoUrl": "https://placehold.co/200x80/805ad5/ffffff?text=GlobalSolutions",
+            "bannerUrl": "https://images.unsplash.com/photo-1568992687947-868a62a9f521?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+            "tagline": "Worldwide technology services",
+            "description": "With offices in 15 countries, GlobalSolutions provides scalable technology infrastructure and consulting services globally.",
+            "url": "https://example.com"
+          },
+          {
+            "name": "FutureTech",
+            "logoUrl": "https://placehold.co/200x80/d69e2e/ffffff?text=FutureTech",
+            "bannerUrl": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+            "tagline": "Tomorrow's technology today",
+            "description": "FutureTech specializes in emerging technologies like augmented reality, blockchain, and quantum computing.",
+            "url": "https://example.com"
+          },
+          {
+            "name": "DataDynamics",
+            "logoUrl": "https://placehold.co/200x80/667eea/ffffff?text=DataDynamics",
+            "bannerUrl": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+            "tagline": "Data-driven decision making",
+            "description": "DataDynamics helps organizations leverage big data analytics and machine learning to make better business decisions.",
+            "url": "https://example.com"
+          },
+          {
+            "name": "CloudSystems",
+            "logoUrl": "https://placehold.co/200x80/ed8936/ffffff?text=CloudSystems",
+            "tagline": "Reliable cloud infrastructure",
+            "description": "CloudSystems provides secure, scalable cloud solutions for businesses of all sizes, with 99.99% uptime guarantee.",
+            "url": "https://example.com"
+          },
+          {
+            "name": "SecureNet",
+            "logoUrl": "https://placehold.co/200x80/48bb78/ffffff?text=SecureNet",
+            "tagline": "Enterprise-grade security",
+            "description": "SecureNet offers comprehensive cybersecurity services to protect organizations from evolving digital threats.",
+            "url": "https://example.com"
+          }
+        ]
+      }
+    },
+    {
+      "id": "mediaPartners",
+      "type": "partners",
+      "properties": {
+        "title": "Media Partners",
+        "description": "Leading publications and media outlets that help us spread the word about our events and initiatives.",
+        "partners": [
+          {
+            "name": "Tech Weekly",
+            "logoUrl": "https://placehold.co/200x100/2b6cb0/ffffff?text=TechWeekly",
+            "tagline": "The latest tech news and analysis",
+            "url": "https://example.com"
+          },
+          {
+            "name": "Digital Today",
+            "logoUrl": "https://placehold.co/200x100/2c5282/ffffff?text=DigitalToday",
+            "tagline": "Tomorrow's digital trends",
+            "url": "https://example.com"
+          },
+          {
+            "name": "Innovation Channel",
+            "logoUrl": "https://placehold.co/200x100/2a4365/ffffff?text=IC",
+            "tagline": "Where innovators share ideas",
+            "url": "https://example.com"
+          },
+          {
+            "name": "Future Insights",
+            "logoUrl": "https://placehold.co/200x100/1a365d/ffffff?text=FutureInsights",
+            "tagline": "In-depth technology analysis",
+            "url": "https://example.com"
+          },
+          {
+            "name": "Tech Entrepreneur",
+            "logoUrl": "https://placehold.co/200x100/3182ce/ffffff?text=TechEntrepreneur",
+            "tagline": "For startup founders and leaders",
+            "url": "https://example.com"
+          },
+          {
+            "name": "DevOps Daily",
+            "logoUrl": "https://placehold.co/200x100/4299e1/ffffff?text=DevOpsDaily",
+            "tagline": "Development and operations insights",
+            "url": "https://example.com"
+          }
+        ]
+      }
+    },
+    {
+      "id": "timeline",
+      "type": "timeline",
+      "properties": {
+        "title": "Hackathon Schedule",
+        "description": "Mark these important dates for the upcoming hackathon event",
+        "events": [
+          {
+            "title": "Registration Deadline",
+            "date": "2025-03-16",
+            "time": "23:59:59",
+            "description": "There is no registration fee for the participants. Last date to submit your entry.",
+            "type": "deadline",
+            "accentColor": "red",
+            "links": [
+              {
+                "label": "Team Registration",
+                "url": "/registration"
+              }
+            ]
+          },
+          {
+            "title": "Round I - Idea Submission",
+            "date": "2025-03-16",
+            "time": "23:59:59",
+            "description": "Submit your PPT/Idea for the first round of evaluation.",
+            "type": "submission",
+            "accentColor": "blue"
+          },
+          {
+            "title": "Round II - Presentation (Online Mode)",
+            "date": "2025-03-22",
+            "time": "09:00:00",
+            "description": "Selected teams will present their ideas to the judges online.",
+            "type": "presentation",
+            "accentColor": "green"
+          },
+          {
+            "title": "Results Announcement",
+            "date": "2025-03-25",
+            "time": "20:00:00",
+            "description": "Final results will be announced and winners will be declared.",
+            "type": "meeting",
+            "accentColor": "purple"
+          }
+        ],
+        "showLinks": true
+      }
+    },
+    {
+      "id": "hackathonRules",
+      "type": "textWithImage",
+      "properties": {
+        "title": "Hackathon Guidelines",
+        "content": "Please read our guidelines carefully before participating in the hackathon. All teams must follow the rules and submission requirements.",
+        "imageUrl": "https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+        "imagePosition": "left",
+        "buttonText": "View Rules",
+        "buttonLink": "/rules"
+      }
+    },
+    {
+      "id": "rules",
+      "type": "freestyle",
+      "properties": {
+        "title": "Hackathon Rules & Requirements",
+        "backgroundColor": "light",
+        "maxWidth": "4xl",
+        "content": "<h3>General Guidelines</h3><p>Welcome to our hackathon! Please read the following rules carefully before participating:</p><ul><li><strong>Team Size:</strong> Teams must consist of 2-4 members. No exceptions will be made for larger teams.</li><li><strong>Original Work:</strong> All code and designs must be created during the hackathon. You may use open-source libraries and frameworks, but the implementation must be original.</li><li><strong>Intellectual Property:</strong> You retain the rights to your intellectual property, but grant the organizers permission to share your project details for promotional purposes.</li></ul><h3>Submission Requirements</h3><p>Your final submission must include:</p><ol><li>Source code (submitted via GitHub repository)</li><li>A brief presentation (5-7 slides) explaining your solution</li><li>A live demo or video demonstration (3-5 minutes)</li></ol><h3>Judging Criteria</h3><table class='w-full border-collapse'><thead><tr><th class='border p-2 bg-gray-100'>Criteria</th><th class='border p-2 bg-gray-100'>Weight</th></tr></thead><tbody><tr><td class='border p-2'>Innovation & Creativity</td><td class='border p-2'>30%</td></tr><tr><td class='border p-2'>Technical Implementation</td><td class='border p-2'>25%</td></tr><tr><td class='border p-2'>User Experience</td><td class='border p-2'>20%</td></tr><tr><td class='border p-2'>Business Potential</td><td class='border p-2'>15%</td></tr><tr><td class='border p-2'>Presentation</td><td class='border p-2'>10%</td></tr></tbody></table><h3>Code of Conduct</h3><p>All participants are expected to adhere to our code of conduct, which promotes a friendly, inclusive, and harassment-free environment. Violations may result in disqualification.</p><blockquote><p>Remember that the primary goal is learning and collaboration. Have fun, make connections, and build something awesome!</p></blockquote>"
+      }
+    },
+    {
+      "id": "cta",
+      "type": "callToAction",
+      "properties": {
+        "title": "Ready to Get Started?",
+        "description": "Create your first dynamic page in minutes.",
+        "buttonText": "Start Building",
+        "buttonLink": "/signup",
+        "backgroundColor": "accent"
+      }
+    },
+    {
+      "id": "footer",
+      "type": "footer",
+      "properties": {
+        "logoText": "DynamicBuilder",
+        "logo": "https://placehold.co/200x60/4299e1/ffffff?text=Logo",
+        "description": "Build dynamic, component-based pages quickly and easily with our flexible page builder platform.",
+        "autoGenerate": true,
+        "sections": [
+          {
+            "title": "Product",
+            "links": [
+              { "label": "Features", "href": "/features" },
+              { "label": "Pricing", "href": "/pricing" },
+              { "label": "Roadmap", "href": "/roadmap" },
+              { "label": "Documentation", "href": "/docs" }
+            ]
+          },
+          {
+            "title": "Resources",
+            "links": [
+              { "label": "Blog", "href": "/blog" },
+              { "label": "Support", "href": "/support" },
+              { "label": "Community", "href": "/community" }
+            ]
+          }
+        ],
+        "contactInfo": {
+          "email": "hello@example.com",
+          "phone": "+1 (555) 123-4567",
+          "address": "123 Main St, Anytown USA 12345"
+        },
+        "socialLinks": [
+          { "platform": "twitter", "url": "https://twitter.com" },
+          { "platform": "facebook", "url": "https://facebook.com" },
+          { "platform": "linkedin", "url": "https://linkedin.com" },
+          { "platform": "github", "url": "https://github.com" },
+          { "platform": "instagram", "url": "https://instagram.com" }
+        ],
+        "copyright": "© {year} DynamicBuilder. All rights reserved."
+      }
+    }
+  ]
+}
