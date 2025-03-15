@@ -1,5 +1,5 @@
 import { selector } from "recoil";
-import { userState } from "./atoms";
+import { userState, pageConfigState } from "./atoms";
 
 // User authentication status selector
 export const isAuthenticatedSelector = selector({
@@ -16,5 +16,29 @@ export const userProfileSelector = selector({
   get: ({ get }) => {
     const user = get(userState);
     return user ? user.profile : null;
+  },
+});
+
+export const pageThemeSelector = selector({
+  key: "pageThemeSelector",
+  get: ({ get }) => {
+    const pageConfig = get(pageConfigState);
+    return (
+      pageConfig?.theme || {
+        primary: "blue",
+        secondary: "gray",
+        accent: "yellow",
+        background: "light",
+        fontFamily: "sans",
+      }
+    );
+  },
+});
+
+export const pageSectionsSelector = selector({
+  key: "pageSectionsSelector",
+  get: ({ get }) => {
+    const pageConfig = get(pageConfigState);
+    return pageConfig?.sections || [];
   },
 });

@@ -17,3 +17,17 @@ export const errorState = atom({
   key: "errorState",
   default: null,
 });
+
+export const pageConfigState = atom({
+  key: "pageConfigState",
+  default: null,
+});
+
+export const notificationState = atom({
+  key: "notificationState",
+  default: {
+    show: false,
+    message: "",
+    type: "info", // 'info', 'success', 'warning', 'error'
+  },
+});
